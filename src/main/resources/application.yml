@@ -16,5 +16,14 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+    open-in-view: false
   liquibase:
     change-log: classpath:migrations/changelog.yml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+      path-mapping:
+        prometheus: metrics
+      base-path: /
