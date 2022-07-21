@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-07-02-create-wallets-table-01
+      author: gustavo-flor
+      changes:
+        - createTable:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: balance
+                  type: currency
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modality
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2022-07-02-create-wallets-table-02
+      author: gustavo-flor
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: customer_id
+            baseTableName: wallets
+            constraintName: fk_wallets_customer_id
+            referencedColumnNames: id
+            referencedTableName: customers
+  - changeSet:
+      id: 2022-07-02-create-wallets-table-03
+      author: gustavo-flor
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: modality
+              - column:
+                  name: customer_id
+            indexName: idx_modality_customer_id
+            tableName: wallets
+            unique: true
+  - changeSet:
+      id: 2022-07-02-create-wallets-table-04
+      author: gustavo-flor
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: customer_id
+            indexName: idx_customer_id
+            tableName: wallets

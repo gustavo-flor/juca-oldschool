@@ -1,0 +1,20 @@
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+springdoc:
+  swagger-ui:
+    path: /
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: juca-application
+  datasource:
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/juca}
+  jpa:
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: classpath:migrations/changelog.yml
