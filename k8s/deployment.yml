@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: juca-deployment
+  labels:
+    app: juca-application
+spec:
+  selector:
+    matchLabels:
+      app: juca-application
+  template:
+    metadata:
+      labels:
+        app: juca-application
+    spec:
+      containers:
+        - name: juca-application
+          image: docker.io/ogustaflor/juca
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DATASOURCE_USERNAME
+              value: postgres
+            - name: DATASOURCE_PASSWORD
+              value: postgres
+            - name: DATASOURCE_URL
+              value: jdbc:postgresql://host.minikube.internal:5432/juca
+          ports:
+            - containerPort: 8080
+  replicas: 1
