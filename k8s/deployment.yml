@@ -16,7 +16,7 @@ spec:
       containers:
         - name: juca-application
           image: docker.io/ogustaflor/juca
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: DATASOURCE_USERNAME
               value: postgres

@@ -25,3 +25,15 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/juca:${{ github.event.release.tag_name }}
             ${{ secrets.DOCKERHUB_USERNAME }}/juca:latest
+#  kubernetes:
+#    name: Kubernetes
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Deploy
+#        uses: Azure/k8s-deploy@v3.1
+#        with:
+#          namespace: default
+#          manifests: |
+#            k8s/deployment.yml
+#            k8s/service.yml
+#          images: ${{ secrets.DOCKERHUB_USERNAME }}/juca:latest
