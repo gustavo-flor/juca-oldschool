@@ -1,9 +1,11 @@
 package com.github.gustavoflor.juca.event.subscriber;
 
 import com.github.gustavoflor.juca.event.TransferBetweenWalletsRequestedEvent;
+import com.github.gustavoflor.juca.exception.InsufficientFundsException;
 import com.github.gustavoflor.juca.usecase.TransferBetweenWalletsUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +26,14 @@ public class TransferRequestedEventSubscriber implements Consumer<TransferBetwee
                 .to(event.to())
                 .amount(event.amount())
                 .build();
-        transferBetweenWalletsUseCase.execute(payload);
+        executeTransferBetweenWallets(payload);
+    }
+
+    private void executeTransferBetweenWallets(final TransferBetweenWalletsUseCase.Payload payload) {
+        try {
+            transferBetweenWalletsUseCase.execute(payload);
+        } catch (InsufficientFundsException e) {
+            log.error("Insufficient funds to make transfer between wallets. payload = {}", payload, e);
+        }
     }
 }
