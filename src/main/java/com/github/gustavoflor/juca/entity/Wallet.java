@@ -1,7 +1,5 @@
 package com.github.gustavoflor.juca.entity;
 
-import com.github.gustavoflor.juca.Modality;
-import com.github.gustavoflor.juca.exception.InsufficientFundsException;
 import lombok.*;
 
 import javax.persistence.*;

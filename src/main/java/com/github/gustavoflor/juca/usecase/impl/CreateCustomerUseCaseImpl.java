@@ -1,6 +1,6 @@
 package com.github.gustavoflor.juca.usecase.impl;
 
-import com.github.gustavoflor.juca.Modality;
+import com.github.gustavoflor.juca.entity.Modality;
 import com.github.gustavoflor.juca.dto.CustomerDTO;
 import com.github.gustavoflor.juca.entity.Customer;
 import com.github.gustavoflor.juca.entity.Wallet;

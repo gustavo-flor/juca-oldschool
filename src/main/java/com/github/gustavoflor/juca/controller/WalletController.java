@@ -3,7 +3,7 @@ package com.github.gustavoflor.juca.controller;
 import com.github.gustavoflor.juca.dto.WalletDTO;
 import com.github.gustavoflor.juca.request.TransferRequestBody;
 import com.github.gustavoflor.juca.usecase.FindWalletsByCustomerIdUseCase;
-import com.github.gustavoflor.juca.usecase.TransferBetweenWalletsUseCase;
+import com.github.gustavoflor.juca.usecase.RequestTransferBetweenWalletsUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WalletController {
     private final FindWalletsByCustomerIdUseCase findWalletsByCustomerIdUseCase;
-    private final TransferBetweenWalletsUseCase transferBetweenWalletsUseCase;
+    private final RequestTransferBetweenWalletsUseCase requestTransferBetweenWalletsUseCase;
 
     @GetMapping
     public List<WalletDTO> findAll(@PathVariable final Long customerId) {
@@ -23,12 +23,12 @@ public class WalletController {
 
     @PostMapping("/transfer")
     public void transfer(@PathVariable final Long customerId, @RequestBody final TransferRequestBody body) {
-        final TransferBetweenWalletsUseCase.Payload payload = TransferBetweenWalletsUseCase.Payload.builder()
+        final var payload = RequestTransferBetweenWalletsUseCase.Payload.builder()
                 .amount(body.amount())
                 .from(body.from())
                 .to(body.to())
                 .customerId(customerId)
                 .build();
-        transferBetweenWalletsUseCase.execute(payload);
+        requestTransferBetweenWalletsUseCase.execute(payload);
     }
 }

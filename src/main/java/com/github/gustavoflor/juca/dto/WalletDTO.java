@@ -1,6 +1,6 @@
 package com.github.gustavoflor.juca.dto;
 
-import com.github.gustavoflor.juca.Modality;
+import com.github.gustavoflor.juca.entity.Modality;
 import com.github.gustavoflor.juca.entity.Wallet;
 
 import java.math.BigDecimal;

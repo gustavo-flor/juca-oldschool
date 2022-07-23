@@ -1,6 +1,6 @@
 package com.github.gustavoflor.juca.repository;
 
-import com.github.gustavoflor.juca.Modality;
+import com.github.gustavoflor.juca.entity.Modality;
 import com.github.gustavoflor.juca.entity.Wallet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package com.github.gustavoflor.juca.request;
 
-import com.github.gustavoflor.juca.Modality;
+import com.github.gustavoflor.juca.entity.Modality;
 
 import java.math.BigDecimal;
 
